@@ -59,7 +59,7 @@ public class ArchGraphics {
 	/**
      * Called to refresh graphics
      */
-	public void push() {
+	public static void push() {
 		Emulator.update();
 	}
 
