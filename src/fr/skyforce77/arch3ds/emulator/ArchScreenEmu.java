@@ -1,34 +1,32 @@
 package fr.skyforce77.arch3ds.emulator;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 
-import fr.skyforce77.arch3ds.api.graphics.ArchGraphics;
 import fr.skyforce77.arch3ds.api.graphics.ArchScreen;
+import fr.skyforce77.arch3ds.emulator.file.FileMenuItem;
 
 public class ArchScreenEmu extends JFrame{
 
 	private static final long serialVersionUID = -3067221987757157524L;
-	private ArchScreen screen;
 	
 	public ArchScreenEmu(ArchScreen screen, Dimension size) {
-		this.screen = screen;
-			
 		setTitle("3dsArch Emulator");
 		setSize(size);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JMenuBar bar = new JMenuBar();
+		JMenu file = new JMenu("File");
+		file.add(new FileMenuItem());
+		bar.add(file);
+		
+		setJMenuBar(bar);
+		
+		add(new ArchScreenComponent(screen));
 		setVisible(true);
-	}
-	
-	@Override
-	public void update(Graphics g) {
-		Graphics2D g2d = (Graphics2D)g;
-		if(PluginManager.getPlugin() != null) {
-			PluginManager.getPlugin().drawScreen(new ArchGraphics(screen, g2d, getWidth(), getHeight()));
-		}
 	}
 
 }

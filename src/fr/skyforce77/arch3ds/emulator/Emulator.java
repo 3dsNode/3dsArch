@@ -21,4 +21,9 @@ public class Emulator {
 		return bottomscreen;
 	}
 	
+	public static void update() {
+		topscreen.repaint();
+		bottomscreen.repaint();
+	}
+	
 }

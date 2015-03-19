@@ -2,6 +2,8 @@ package fr.skyforce77.arch3ds.api.graphics;
 
 import java.awt.Graphics2D;
 
+import fr.skyforce77.arch3ds.emulator.Emulator;
+
 public class ArchGraphics {
 	
 	private ArchScreen screen;
@@ -58,7 +60,7 @@ public class ArchGraphics {
      * Called to refresh graphics
      */
 	public void push() {
-		//TODO
+		Emulator.update();
 	}
 
 }
