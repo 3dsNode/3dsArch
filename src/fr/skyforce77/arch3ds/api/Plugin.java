@@ -52,7 +52,7 @@ public class Plugin {
 	/**
      * Called when axis status changed
      */
-	public void onAxis(ArchAxis axis, byte code){};
+	public void onAxis(ArchAxis axis, double location){};
 	
 	/**
      * Called when server need to refresh screen
