@@ -6,13 +6,16 @@ public class ArchGraphics {
 	
 	private ArchScreen screen;
 	private Graphics2D g2d;
+	private int width, height;
 	
 	/**
      * Instancing with selected type
      */
-	public ArchGraphics(ArchScreen screen, Graphics2D g2d) {
+	public ArchGraphics(ArchScreen screen, Graphics2D g2d, int width, int height) {
 		this.screen = screen;
 		this.g2d = g2d;
+		this.width = width;
+		this.height = height;
 	}
 	
 	/**
@@ -31,6 +34,24 @@ public class ArchGraphics {
      */
 	public Graphics2D getGraphics() {
 		return g2d;
+	}
+	
+	/**
+     * Screen width getter
+     * 
+     * @return graphics width
+     */
+	public int getWidth() {
+		return width;
+	}
+	
+	/**
+     * Screen height getter
+     * 
+     * @return graphics height
+     */
+	public int getHeight() {
+		return height;
 	}
 	
 	/**
