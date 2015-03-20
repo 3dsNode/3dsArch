@@ -80,7 +80,7 @@ public class PluginManager {
 		try {
 			Field name = Plugin.class.getDeclaredField("name");
 			name.setAccessible(true);
-			name.set(p, map.get("name"));
+			name.set(p, map.get("name").toString());
 		} catch (NoSuchFieldException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
