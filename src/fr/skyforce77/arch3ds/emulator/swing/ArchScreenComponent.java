@@ -1,4 +1,4 @@
-package fr.skyforce77.arch3ds.emulator;
+package fr.skyforce77.arch3ds.emulator.swing;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -7,6 +7,7 @@ import javax.swing.JComponent;
 
 import fr.skyforce77.arch3ds.api.graphics.ArchGraphics;
 import fr.skyforce77.arch3ds.api.graphics.ArchScreen;
+import fr.skyforce77.arch3ds.emulator.PluginManager;
 
 public class ArchScreenComponent extends JComponent{
 	
