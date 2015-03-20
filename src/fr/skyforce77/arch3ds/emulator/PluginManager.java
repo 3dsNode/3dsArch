@@ -3,6 +3,7 @@ package fr.skyforce77.arch3ds.emulator;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -45,11 +46,14 @@ public class PluginManager {
 	        Map<?, ?> map = asMap(yaml.load(stream));
             Class<?> cls = loader.loadClass(map.get("main").toString());
             Plugin p = (Plugin) cls.newInstance();
+            setPluginAttributes(p, map);
             jar.close();
+            System.out.println("Loading "+p.getName());
             p.onInit();
             loaded = p;
             p.onEnable();
             Emulator.update();
+            System.out.println("Loaded "+p.getName());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
@@ -66,10 +70,40 @@ public class PluginManager {
 	}
 	
 	private static Map<?, ?> asMap(Object object) {
-			if (object instanceof Map) {
-				return (Map<?, ?>) object;
-			}
-			return null;
+		if (object instanceof Map) {
+			return (Map<?, ?>) object;
+		}
+		return null;
+	}
+	
+	private static void setPluginAttributes(Plugin p, Map<?,?> map) {
+		try {
+			Field name = Plugin.class.getDeclaredField("name");
+			name.setAccessible(true);
+			name.set(p, map.get("name"));
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			Field version = Plugin.class.getDeclaredField("version");
+			version.setAccessible(true);
+			version.set(p, map.get("version"));
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			System.err.println("Plugin version isn't a double");
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static Plugin getPlugin() {

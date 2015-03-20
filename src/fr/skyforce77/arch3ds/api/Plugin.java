@@ -6,13 +6,16 @@ import fr.skyforce77.arch3ds.api.input.ArchInput;
 
 public class Plugin {
 
+	private String name;
+	private Double version;
+	
 	/**
      * Returns the name of the plugin
      *
      * @return name of the plugin
      */
 	public String getName(){
-		return null;
+		return name;
 	}
 	
 	/**
@@ -20,8 +23,8 @@ public class Plugin {
      *
      * @return version of the plugin
      */
-	public String getVersion(){
-		return null;
+	public Double getVersion(){
+		return version;
 	}
 	
 	/**
