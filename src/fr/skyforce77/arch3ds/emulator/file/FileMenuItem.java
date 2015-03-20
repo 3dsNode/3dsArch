@@ -22,7 +22,7 @@ public class FileMenuItem extends JMenuItem{
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fc = new JFileChooser();
 				fc.setFileFilter(new JarFilter());
-				int value = fc.showDialog(fc, "Attach");
+				int value = fc.showDialog(fc, "Open");
 				if(value == JFileChooser.APPROVE_OPTION) {
 					File plugin = fc.getSelectedFile();
 					try {
