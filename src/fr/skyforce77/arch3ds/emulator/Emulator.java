@@ -30,6 +30,16 @@ public class Emulator {
 		topscreen = new ArchScreenEmu(ArchScreen.TOP_SCREEN, new Dimension(400,240));
 		bottomscreen = new ArchScreenEmu(ArchScreen.BOTTOM_SCREEN, new Dimension(320,240));
 		menu = new ArchMenuFrame();
+		
+		new Thread("Tick") {
+			public void run() {
+				try {
+					Thread.sleep(100l);
+					if(PluginManager.getPlugin() != null)
+						PluginManager.getPlugin().onTick();
+				} catch (InterruptedException e) {}
+			};
+		}.start();
 	}
 	
 	public static ArchScreenEmu getTopScreen() {

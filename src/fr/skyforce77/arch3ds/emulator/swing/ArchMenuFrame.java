@@ -10,7 +10,8 @@ import javax.swing.JMenuBar;
 
 import fr.skyforce77.arch3ds.api.input.ArchInput;
 import fr.skyforce77.arch3ds.emulator.Emulator;
-import fr.skyforce77.arch3ds.emulator.file.FileMenuItem;
+import fr.skyforce77.arch3ds.emulator.file.OpenMenuItem;
+import fr.skyforce77.arch3ds.emulator.file.ReloadMenuItem;
 
 public class ArchMenuFrame extends JFrame{
 
@@ -25,7 +26,8 @@ public class ArchMenuFrame extends JFrame{
 		
 		JMenuBar bar = new JMenuBar();
 		JMenu file = new JMenu("File");
-		file.add(new FileMenuItem());
+		file.add(new OpenMenuItem());
+		file.add(new ReloadMenuItem());
 		bar.add(file);
 		
 		add(new ArchButton(ArchInput.BUTTON_SELECT));

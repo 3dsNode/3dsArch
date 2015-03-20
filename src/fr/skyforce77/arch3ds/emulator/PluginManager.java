@@ -109,4 +109,12 @@ public class PluginManager {
 	public static Plugin getPlugin() {
 		return loaded;
 	}
+	
+	public static void reloadPlugin() {
+		if(loader != null) {
+			URL[] urls = loader.getURLs();
+			if(urls.length > 0)
+				loadPlugin(urls[0]);
+		}
+	}
 }

@@ -10,11 +10,11 @@ import javax.swing.JMenuItem;
 
 import fr.skyforce77.arch3ds.emulator.PluginManager;
 
-public class FileMenuItem extends JMenuItem{
+public class OpenMenuItem extends JMenuItem{
 
 	private static final long serialVersionUID = -5180323590655757625L;
 	
-	public FileMenuItem() {
+	public OpenMenuItem() {
 		super("Open");
 		addActionListener(new ActionListener() {
 			
