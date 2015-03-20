@@ -1,6 +1,7 @@
 package fr.skyforce77.arch3ds.emulator.swing;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ public class ArchMenuFrame extends JFrame{
 		setTitle("3dsArch - Menu");
 		setSize(new Dimension(300,500));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new FlowLayout());
 		setIconImage(new ImageIcon(Emulator.class.getResource("/resources/icon.png")).getImage());
 		
 		JMenuBar bar = new JMenuBar();
