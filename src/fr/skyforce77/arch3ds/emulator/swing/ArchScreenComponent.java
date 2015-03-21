@@ -19,6 +19,7 @@ public class ArchScreenComponent extends JComponent implements MouseListener{
 	
 	public ArchScreenComponent(ArchScreen screen) {
 		this.screen = screen;
+		this.addMouseListener(this);
 	}
 	
 	@Override
