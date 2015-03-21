@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 
 import fr.skyforce77.arch3ds.api.graphics.ArchGraphics;
 import fr.skyforce77.arch3ds.api.graphics.ArchScreen;
-import fr.skyforce77.arch3ds.emulator.PluginManager;
+import fr.skyforce77.arch3ds.emulator.ArchGameManager;
 
 public class ArchScreenComponent extends JComponent{
 	
@@ -22,8 +22,8 @@ public class ArchScreenComponent extends JComponent{
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
-		if(PluginManager.getPlugin() != null) {
-			PluginManager.getPlugin().drawScreen(new ArchGraphics(screen, g2d, getWidth(), getHeight()));
+		if(ArchGameManager.getArchGame() != null) {
+			ArchGameManager.getArchGame().drawScreen(new ArchGraphics(screen, g2d, getWidth(), getHeight()));
 		}
 	}
 

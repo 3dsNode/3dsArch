@@ -16,14 +16,14 @@ import javax.swing.JOptionPane;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.SafeConstructor;
 
-import fr.skyforce77.arch3ds.api.Plugin;
+import fr.skyforce77.arch3ds.api.ArchGame;
 
-public class PluginManager {
+public class ArchGameManager {
 
 	private static URLClassLoader loader;
-	private static Plugin loaded;
+	private static ArchGame loaded;
 	
-	public static void loadPlugin(URL url) {
+	public static void loadArchGame(URL url) {
 		if(loaded != null) {
 			loaded.onDisable();
 		}
@@ -40,13 +40,13 @@ public class PluginManager {
 		
 		try {
 			JarFile jar = new JarFile(new File(url.toURI()));
-			JarEntry entry = jar.getJarEntry("plugin.yml");
+			JarEntry entry = jar.getJarEntry("archgame.yml");
 	        InputStream stream = jar.getInputStream(entry);
 	        Yaml yaml = new Yaml(new SafeConstructor());
 	        Map<?, ?> map = asMap(yaml.load(stream));
             Class<?> cls = loader.loadClass(map.get("main").toString());
-            Plugin p = (Plugin) cls.newInstance();
-            setPluginAttributes(p, map);
+            ArchGame p = (ArchGame) cls.newInstance();
+            setArchGameAttributes(p, map);
             jar.close();
             System.out.println("Loading "+p.getName());
             p.onInit();
@@ -76,9 +76,9 @@ public class PluginManager {
 		return null;
 	}
 	
-	private static void setPluginAttributes(Plugin p, Map<?,?> map) {
+	private static void setArchGameAttributes(ArchGame p, Map<?,?> map) {
 		try {
-			Field name = Plugin.class.getDeclaredField("name");
+			Field name = ArchGame.class.getDeclaredField("name");
 			name.setAccessible(true);
 			name.set(p, map.get("name").toString());
 		} catch (NoSuchFieldException e) {
@@ -92,7 +92,7 @@ public class PluginManager {
 		}
 		
 		try {
-			Field version = Plugin.class.getDeclaredField("version");
+			Field version = ArchGame.class.getDeclaredField("version");
 			version.setAccessible(true);
 			version.set(p, map.get("version"));
 		} catch (NoSuchFieldException e) {
@@ -100,21 +100,21 @@ public class PluginManager {
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
-			System.err.println("Plugin version isn't a double");
+			System.err.println("ArchGame version isn't a double");
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static Plugin getPlugin() {
+	public static ArchGame getArchGame() {
 		return loaded;
 	}
 	
-	public static void reloadPlugin() {
+	public static void reloadArchGame() {
 		if(loader != null) {
 			URL[] urls = loader.getURLs();
 			if(urls.length > 0)
-				loadPlugin(urls[0]);
+				loadArchGame(urls[0]);
 		}
 	}
 }

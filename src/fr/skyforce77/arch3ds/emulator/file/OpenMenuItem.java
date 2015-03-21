@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 
-import fr.skyforce77.arch3ds.emulator.PluginManager;
+import fr.skyforce77.arch3ds.emulator.ArchGameManager;
 
 public class OpenMenuItem extends JMenuItem{
 
@@ -24,9 +24,9 @@ public class OpenMenuItem extends JMenuItem{
 				fc.setFileFilter(new JarFilter());
 				int value = fc.showDialog(fc, "Open");
 				if(value == JFileChooser.APPROVE_OPTION) {
-					File plugin = fc.getSelectedFile();
+					File archgame = fc.getSelectedFile();
 					try {
-						PluginManager.loadPlugin(plugin.toURI().toURL());
+						ArchGameManager.loadArchGame(archgame.toURI().toURL());
 					} catch (MalformedURLException ex) {
 						ex.printStackTrace();
 					}

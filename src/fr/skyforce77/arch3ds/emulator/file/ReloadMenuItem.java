@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
-import fr.skyforce77.arch3ds.emulator.PluginManager;
+import fr.skyforce77.arch3ds.emulator.ArchGameManager;
 
 public class ReloadMenuItem extends JMenuItem{
 
@@ -16,7 +16,7 @@ public class ReloadMenuItem extends JMenuItem{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					PluginManager.reloadPlugin();
+					ArchGameManager.reloadArchGame();
 			}
 		});
 	}

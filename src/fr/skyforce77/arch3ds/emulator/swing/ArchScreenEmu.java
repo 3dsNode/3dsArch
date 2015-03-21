@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 
 import fr.skyforce77.arch3ds.api.graphics.ArchScreen;
 import fr.skyforce77.arch3ds.api.input.ArchInput;
+import fr.skyforce77.arch3ds.emulator.ArchGameManager;
 import fr.skyforce77.arch3ds.emulator.Emulator;
-import fr.skyforce77.arch3ds.emulator.PluginManager;
 
 public class ArchScreenEmu extends JFrame implements KeyListener{
 
@@ -31,16 +31,16 @@ public class ArchScreenEmu extends JFrame implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		ArchInput key = toInput(e.getKeyCode());
-		if(PluginManager.getPlugin() != null && key != null) {
-			PluginManager.getPlugin().onInput(key, (byte)0x01);
+		if(ArchGameManager.getArchGame() != null && key != null) {
+			ArchGameManager.getArchGame().onInput(key, (byte)0x01);
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		ArchInput key = toInput(e.getKeyCode());
-		if(PluginManager.getPlugin() != null && key != null) {
-			PluginManager.getPlugin().onInput(key, (byte)0x00);
+		if(ArchGameManager.getArchGame() != null && key != null) {
+			ArchGameManager.getArchGame().onInput(key, (byte)0x00);
 		}
 	}
 
