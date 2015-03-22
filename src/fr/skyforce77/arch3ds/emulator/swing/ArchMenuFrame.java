@@ -19,7 +19,7 @@ public class ArchMenuFrame extends JFrame{
 
 	public ArchMenuFrame() {
 		setTitle("3dsArch - Menu");
-		setSize(new Dimension(300,500));
+		setSize(new Dimension(300,200));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new FlowLayout());
 		setIconImage(new ImageIcon(Emulator.class.getResource("/resources/icon.png")).getImage());
@@ -30,8 +30,8 @@ public class ArchMenuFrame extends JFrame{
 		file.add(new ReloadMenuItem());
 		bar.add(file);
 		
-		add(new ArchButton(ArchInput.BUTTON_SELECT));
-		add(new ArchButton(ArchInput.BUTTON_START));
+		for(ArchInput ai : ArchInput.values())
+			add(new ArchButton(ai));
 		
 		setJMenuBar(bar);
 		setVisible(true);

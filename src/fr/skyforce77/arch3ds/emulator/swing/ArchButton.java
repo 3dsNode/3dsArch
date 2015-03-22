@@ -15,7 +15,7 @@ public class ArchButton extends JButton implements MouseListener{
 	private ArchInput input;
 	
 	public ArchButton(ArchInput input) {
-		super(input.toString());
+		super(input.toString().replace("BUTTON_", ""));
 		this.input = input;
 		addMouseListener(this);
 	}
