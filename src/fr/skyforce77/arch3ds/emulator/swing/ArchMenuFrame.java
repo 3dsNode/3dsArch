@@ -26,7 +26,7 @@ public class ArchMenuFrame extends JFrame{
 		
 		JMenuBar bar = new JMenuBar();
 		JMenu file = new JMenu("File");
-		file.add(new OpenMenuItem());
+		file.add(new OpenMenuItem(this));
 		file.add(new ReloadMenuItem());
 		bar.add(file);
 		

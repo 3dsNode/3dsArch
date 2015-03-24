@@ -6,6 +6,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 
 import fr.skyforce77.arch3ds.emulator.ArchGameManager;
@@ -14,7 +15,7 @@ public class OpenMenuItem extends JMenuItem{
 
 	private static final long serialVersionUID = -5180323590655757625L;
 	
-	public OpenMenuItem() {
+	public OpenMenuItem(final JFrame parent) {
 		super("Open");
 		addActionListener(new ActionListener() {
 			
@@ -22,7 +23,7 @@ public class OpenMenuItem extends JMenuItem{
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fc = new JFileChooser();
 				fc.setFileFilter(new JarFilter());
-				int value = fc.showDialog(fc, "Open");
+				int value = fc.showDialog(parent, "Open");
 				if(value == JFileChooser.APPROVE_OPTION) {
 					File archgame = fc.getSelectedFile();
 					try {
