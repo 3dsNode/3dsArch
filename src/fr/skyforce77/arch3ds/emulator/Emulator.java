@@ -56,8 +56,11 @@ public class Emulator {
 		return menu;
 	}
 
-	public static void update() {
+	public static void updateTop() {
 		topscreen.repaint();
+	}
+	
+	public static void updateBottom() {
 		bottomscreen.repaint();
 	}
 

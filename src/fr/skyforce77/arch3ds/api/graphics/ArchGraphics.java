@@ -60,7 +60,22 @@ public class ArchGraphics {
      * Called to refresh graphics
      */
 	public static void push() {
-		Emulator.update();
+		Emulator.updateTop();
+		Emulator.updateBottom();
+	}
+	
+	/**
+     * Called to refresh top graphics
+     */
+	public static void pushTop() {
+		Emulator.updateTop();
+	}
+	
+	/**
+     * Called to refresh bottom graphics
+     */
+	public static void pushBottom() {
+		Emulator.updateBottom();
 	}
 
 }

@@ -52,7 +52,8 @@ public class ArchGameManager {
             p.onInit();
             loaded = p;
             p.onEnable();
-            Emulator.update();
+            Emulator.updateTop();
+            Emulator.updateBottom();
             System.out.println("Loaded "+p.getName());
 		} catch (IOException e) {
 			e.printStackTrace();
