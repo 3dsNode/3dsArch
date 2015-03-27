@@ -2,28 +2,32 @@ package fr.skyforce77.arch3ds.api;
 
 
 public class ArchAPI {
-
-	/**
-     * API version
-     * 
-     */
-	public static double version = 1.0;
 	
 	/**
-     * API version string
-     * 
+     * API actual version
      */
-	public static String versionName = "Arabica";
+	public static double getAPIActualVersion() {
+		return 1.1;
+	}
+	
+	/**
+     * API version
+     */
+	public static APIVersion getAPIVersion() {
+		return APIVersion.ARABICA;
+	}
 	
 	/**
      * Server version
-     * 
      */
-	public static double serverVersion = 0.1;
+	public static double getServerVersion() {
+		return 0.2;
+	}
 	
 	/**
      * Server name
-     * 
      */
-	public static String serverName = "3dsArch Emulator";
+	public static String getServerName(){
+		return "3dsArch Emulator";
+	}
 }
