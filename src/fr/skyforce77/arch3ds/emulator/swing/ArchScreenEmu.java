@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 
 import fr.skyforce77.arch3ds.api.graphics.ArchScreen;
 import fr.skyforce77.arch3ds.api.input.ArchInput;
+import fr.skyforce77.arch3ds.api.listener.InputListener;
 import fr.skyforce77.arch3ds.emulator.ArchGameManager;
 import fr.skyforce77.arch3ds.emulator.Emulator;
 
@@ -32,7 +33,9 @@ public class ArchScreenEmu extends JFrame implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		ArchInput key = toInput(e.getKeyCode());
 		if(ArchGameManager.getArchGame() != null && key != null) {
-			ArchGameManager.getArchGame().onInput(key, (byte)0x01);
+			for(InputListener l : ArchGameManager.getArchGame().getInputListeners()) {
+				l.onInput(key, (byte)0x01);
+			}
 		}
 	}
 
@@ -40,7 +43,9 @@ public class ArchScreenEmu extends JFrame implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 		ArchInput key = toInput(e.getKeyCode());
 		if(ArchGameManager.getArchGame() != null && key != null) {
-			ArchGameManager.getArchGame().onInput(key, (byte)0x00);
+			for(InputListener l : ArchGameManager.getArchGame().getInputListeners()) {
+				l.onInput(key, (byte)0x00);
+			}
 		}
 	}
 

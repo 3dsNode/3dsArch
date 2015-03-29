@@ -5,9 +5,11 @@ import java.awt.FlowLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
+import fr.skyforce77.arch3ds.api.ArchAPI;
 import fr.skyforce77.arch3ds.api.input.ArchInput;
 import fr.skyforce77.arch3ds.emulator.Emulator;
 import fr.skyforce77.arch3ds.emulator.file.OpenMenuItem;
@@ -29,6 +31,7 @@ public class ArchMenuFrame extends JFrame{
 		file.add(new OpenMenuItem(this));
 		file.add(new ReloadMenuItem());
 		bar.add(file);
+		bar.add(new JLabel(" "+ArchAPI.getServerName()+" v"+ArchAPI.getServerVersion()));
 		
 		for(ArchInput ai : ArchInput.values())
 			add(new ArchButton(ai));

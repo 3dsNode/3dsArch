@@ -10,6 +10,8 @@ import javax.swing.JComponent;
 
 import fr.skyforce77.arch3ds.api.graphics.ArchGraphics;
 import fr.skyforce77.arch3ds.api.graphics.ArchScreen;
+import fr.skyforce77.arch3ds.api.listener.GraphicsListener;
+import fr.skyforce77.arch3ds.api.listener.StylusListener;
 import fr.skyforce77.arch3ds.emulator.ArchGameManager;
 
 public class ArchScreenComponent extends JComponent implements MouseListener, MouseMotionListener{
@@ -28,14 +30,18 @@ public class ArchScreenComponent extends JComponent implements MouseListener, Mo
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		if(ArchGameManager.getArchGame() != null) {
-			ArchGameManager.getArchGame().drawScreen(new ArchGraphics(screen, g2d, getWidth(), getHeight()));
+			for(GraphicsListener l : ArchGameManager.getArchGame().getGraphicsListeners()) {
+				l.onScreenUpdated(new ArchGraphics(screen, g2d, getWidth(), getHeight()));
+			}
 		}
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(ArchGameManager.getArchGame() != null)
-			ArchGameManager.getArchGame().onStylusClicked(screen, e.getX(), e.getY());
+			for(StylusListener l : ArchGameManager.getArchGame().getStylusListeners()) {
+				l.onStylusClicked(screen, e.getX(), e.getY());
+			}
 	}
 
 	@Override
@@ -47,25 +53,28 @@ public class ArchScreenComponent extends JComponent implements MouseListener, Mo
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(ArchGameManager.getArchGame() != null)
-			ArchGameManager.getArchGame().onStylusPressed(screen, e.getX(), e.getY());
+			for(StylusListener l : ArchGameManager.getArchGame().getStylusListeners()) {
+				l.onStylusPressed(screen, e.getX(), e.getY());
+			}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if(ArchGameManager.getArchGame() != null)
-			ArchGameManager.getArchGame().onStylusReleased(screen, e.getX(), e.getY());
+			for(StylusListener l : ArchGameManager.getArchGame().getStylusListeners()) {
+				l.onStylusReleased(screen, e.getX(), e.getY());
+			}
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		if(ArchGameManager.getArchGame() != null)
-			ArchGameManager.getArchGame().onStylusMoved(screen, e.getX(), e.getY());
+			for(StylusListener l : ArchGameManager.getArchGame().getStylusListeners()) {
+				l.onStylusMoved(screen, e.getX(), e.getY());
+			}
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent e) {
-		if(ArchGameManager.getArchGame() != null)
-			ArchGameManager.getArchGame().onStylusMoved(screen, e.getX(), e.getY());
-	}
+	public void mouseMoved(MouseEvent e) {}
 
 }

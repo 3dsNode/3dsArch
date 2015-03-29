@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 
 import fr.skyforce77.arch3ds.api.input.ArchInput;
+import fr.skyforce77.arch3ds.api.listener.InputListener;
 import fr.skyforce77.arch3ds.emulator.ArchGameManager;
 
 public class ArchButton extends JButton implements MouseListener{
@@ -36,14 +37,18 @@ public class ArchButton extends JButton implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(ArchGameManager.getArchGame() != null && input != null) {
-			ArchGameManager.getArchGame().onInput(input, (byte)0x01);
+			for(InputListener l : ArchGameManager.getArchGame().getInputListeners()) {
+				l.onInput(input, (byte)0x01);
+			}
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if(ArchGameManager.getArchGame() != null && input != null) {
-			ArchGameManager.getArchGame().onInput(input, (byte)0x00);
+			for(InputListener l : ArchGameManager.getArchGame().getInputListeners()) {
+				l.onInput(input, (byte)0x00);
+			}
 		}
 	}
 

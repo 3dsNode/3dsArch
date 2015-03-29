@@ -59,23 +59,12 @@ public class ArchGraphics {
 	/**
      * Called to refresh graphics
      */
-	public static void push() {
-		Emulator.updateTop();
-		Emulator.updateBottom();
-	}
-	
-	/**
-     * Called to refresh top graphics
-     */
-	public static void pushTop() {
-		Emulator.updateTop();
-	}
-	
-	/**
-     * Called to refresh bottom graphics
-     */
-	public static void pushBottom() {
-		Emulator.updateBottom();
+	public static void push(ArchScreen screen) {
+		if(screen.equals(ArchScreen.TOP_SCREEN)) {
+			Emulator.updateTop();
+		} else if(screen.equals(ArchScreen.BOTTOM_SCREEN)) {
+			Emulator.updateBottom();
+		}
 	}
 
 }
