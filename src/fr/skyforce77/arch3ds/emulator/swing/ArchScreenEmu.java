@@ -66,6 +66,8 @@ public class ArchScreenEmu extends JFrame implements KeyListener{
 			case KeyEvent.VK_E: return ArchInput.BUTTON_R;
 			case KeyEvent.VK_W: return ArchInput.BUTTON_ZL;
 			case KeyEvent.VK_X: return ArchInput.BUTTON_ZR;
+			case KeyEvent.VK_N: return ArchInput.BUTTON_SELECT;
+			case KeyEvent.VK_B: return ArchInput.BUTTON_START;
 			default: return null;
 		}
 	}
