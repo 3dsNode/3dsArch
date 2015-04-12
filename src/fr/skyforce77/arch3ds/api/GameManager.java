@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import fr.skyforce77.arch3ds.emulator.Emulator;
 
+@Deprecated
 public class GameManager {
 
 	/**
@@ -12,7 +13,6 @@ public class GameManager {
      * @return boolean method exists and called successfully
      */
 	public static boolean callGameMethod(String method, Object... args){
-		//Display computer popup
 		if(method.equals("displayPopup")) {
 			if(args.length >= 1) {
 				JOptionPane.showMessageDialog(Emulator.getBottomScreen(), args[0],

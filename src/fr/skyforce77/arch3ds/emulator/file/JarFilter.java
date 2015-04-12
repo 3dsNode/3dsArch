@@ -16,7 +16,7 @@ public class JarFilter extends FileFilter{
 
 	@Override
 	public String getDescription() {
-		return "Jar only";
+		return "Jar file";
 	}
 
 }

@@ -35,9 +35,11 @@ public class ArchGameManager {
 				e.printStackTrace();
 			}
 		}
-		
+		loadArchGameJar(url);
+	}
+	
+	private static void loadArchGameJar(URL url) {
 		loader = new URLClassLoader(new URL[]{url});
-		
 		try {
 			JarFile jar = new JarFile(new File(url.toURI()));
 			JarEntry entry = jar.getJarEntry("archgame.yml");
