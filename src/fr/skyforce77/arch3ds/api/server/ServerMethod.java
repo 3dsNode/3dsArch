@@ -3,8 +3,8 @@ package fr.skyforce77.arch3ds.api.server;
 public enum ServerMethod {
 
 	DISPLAY_POPUP(true),
-	DISPLAY_CONFIRM_POPUP(false),
-	DISPLAY_PROMPT_POPUP(false);
+	DISPLAY_CONFIRM_POPUP(true),
+	DISPLAY_PROMPT_POPUP(true);
 	
 	private boolean supported = false;
 	

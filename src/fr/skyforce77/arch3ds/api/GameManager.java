@@ -15,7 +15,7 @@ public class GameManager {
 	public static boolean callGameMethod(String method, Object... args){
 		if(method.equals("displayPopup")) {
 			if(args.length >= 1) {
-				JOptionPane.showMessageDialog(Emulator.getBottomScreen(), args[0],
+				JOptionPane.showMessageDialog(Emulator.getMenu(), args[0],
 					args.length >= 2 ? args[1].toString() : "Information",
 					JOptionPane.INFORMATION_MESSAGE);
 				return true;

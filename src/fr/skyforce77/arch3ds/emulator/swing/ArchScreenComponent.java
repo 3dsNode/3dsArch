@@ -10,6 +10,7 @@ import javax.swing.JComponent;
 
 import fr.skyforce77.arch3ds.api.graphics.ArchGraphics;
 import fr.skyforce77.arch3ds.api.graphics.ArchScreen;
+import fr.skyforce77.arch3ds.api.graphics.ArchScreenType;
 import fr.skyforce77.arch3ds.api.listener.GraphicsListener;
 import fr.skyforce77.arch3ds.api.listener.StylusListener;
 import fr.skyforce77.arch3ds.emulator.ArchGameManager;
@@ -22,8 +23,12 @@ public class ArchScreenComponent extends JComponent implements MouseListener, Mo
 	
 	public ArchScreenComponent(ArchScreen screen) {
 		this.screen = screen;
-		this.addMouseListener(this);
-		this.addMouseMotionListener(this);
+		this.setPreferredSize(screen.getSize());
+		
+		if(screen.getType().equals(ArchScreenType.BOTTOM_SCREEN)) {
+			this.addMouseListener(this);
+			this.addMouseMotionListener(this);
+		}
 	}
 	
 	@Override
@@ -31,7 +36,7 @@ public class ArchScreenComponent extends JComponent implements MouseListener, Mo
 		Graphics2D g2d = (Graphics2D)g;
 		if(ArchGameManager.getArchGame() != null) {
 			for(GraphicsListener l : ArchGameManager.getArchGame().getGraphicsListeners()) {
-				l.onScreenUpdated(new ArchGraphics(screen, g2d, getWidth(), getHeight()));
+				l.onScreenUpdated(new ArchGraphics(screen, g2d));
 			}
 		}
 	}

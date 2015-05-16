@@ -13,11 +13,11 @@ public class ArchGraphics {
 	/**
      * Instancing with selected type
      */
-	public ArchGraphics(ArchScreen screen, Graphics2D g2d, int width, int height) {
+	public ArchGraphics(ArchScreen screen, Graphics2D g2d) {
 		this.screen = screen;
 		this.g2d = g2d;
-		this.width = width;
-		this.height = height;
+		this.width = screen.getSize().width;
+		this.height = screen.getSize().height;
 	}
 	
 	/**
@@ -59,10 +59,10 @@ public class ArchGraphics {
 	/**
      * Called to refresh graphics
      */
-	public static void push(ArchScreen screen) {
-		if(screen.equals(ArchScreen.TOP_SCREEN)) {
+	public static void push(ArchScreenType type) {
+		if(type.equals(ArchScreenType.TOP_SCREEN)) {
 			Emulator.updateTop();
-		} else if(screen.equals(ArchScreen.BOTTOM_SCREEN)) {
+		} else if(type.equals(ArchScreenType.BOTTOM_SCREEN)) {
 			Emulator.updateBottom();
 		}
 	}
