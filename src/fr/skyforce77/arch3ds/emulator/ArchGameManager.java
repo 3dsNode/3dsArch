@@ -24,17 +24,7 @@ public class ArchGameManager {
 	private static ArchGame loaded;
 	
 	public static void loadArchGame(URL url) {
-		if(loaded != null) {
-			loaded.onDisable();
-		}
-		if(loader != null) {
-			try {
-				loader.close();
-			} catch (IOException e) {
-				new JOptionPane("An error occurred", JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-			}
-		}
+		unloadArchGame();
 		loadArchGameJar(url);
 	}
 	
@@ -119,5 +109,24 @@ public class ArchGameManager {
 			if(urls.length > 0)
 				loadArchGame(urls[0]);
 		}
+	}
+	
+	public static void unloadArchGame() {
+		if(loaded != null) {
+			loaded.onDisable();
+			System.out.println("Unloaded "+loaded.getName());
+			loaded = null;
+		}
+		if(loader != null) {
+			try {
+				loader.close();
+			} catch (IOException e) {
+				new JOptionPane("An error occurred", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+			loader = null;
+		}
+		Emulator.updateBottom();
+		Emulator.updateTop();
 	}
 }

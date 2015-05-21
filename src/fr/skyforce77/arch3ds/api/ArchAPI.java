@@ -28,6 +28,6 @@ public class ArchAPI {
      * Server name
      */
 	public static String getServerName(){
-		return "3dsArch Emulator";
+		return "3dsArch";
 	}
 }

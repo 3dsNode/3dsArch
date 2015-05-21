@@ -1,5 +1,6 @@
 package fr.skyforce77.arch3ds.emulator.swing;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -31,6 +32,10 @@ public class ArchScreenComponent extends JComponent implements MouseListener, Mo
 		}
 	}
 	
+	public ArchScreen getScreen() {
+		return this.screen;
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
@@ -38,6 +43,9 @@ public class ArchScreenComponent extends JComponent implements MouseListener, Mo
 			for(GraphicsListener l : ArchGameManager.getArchGame().getGraphicsListeners()) {
 				l.onScreenUpdated(new ArchGraphics(screen, g2d));
 			}
+		} else {
+			g2d.setColor(Color.BLACK);
+			g2d.fillRect(0, 0, getWidth(), getHeight());
 		}
 	}
 

@@ -7,7 +7,6 @@ import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
@@ -20,6 +19,7 @@ import fr.skyforce77.arch3ds.emulator.ArchGameManager;
 import fr.skyforce77.arch3ds.emulator.Emulator;
 import fr.skyforce77.arch3ds.emulator.file.OpenMenuItem;
 import fr.skyforce77.arch3ds.emulator.file.ReloadMenuItem;
+import fr.skyforce77.arch3ds.emulator.file.UnloadMenuItem;
 
 public class ArchMenuFrame extends JFrame implements KeyListener{
 
@@ -28,20 +28,21 @@ public class ArchMenuFrame extends JFrame implements KeyListener{
 	private ArchScreenComponent topScreen, bottomScreen;
 
 	public ArchMenuFrame() {
-		setTitle("3dsArch - Emulator");
+		setTitle(ArchAPI.getServerName()+" v"+ArchAPI.getServerVersion());
 		setSize(new Dimension(410,540));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new FlowLayout());
 		setIconImage(new ImageIcon(Emulator.class.getResource("/resources/icon.png")).getImage());
+		addKeyListener(this);
 		
 		JMenuBar bar = new JMenuBar();
 		JMenu file = new JMenu("File");
 		file.add(new OpenMenuItem(this));
 		file.add(new ReloadMenuItem());
+		file.add(new UnloadMenuItem());
 		bar.add(file);
-		bar.add(new JLabel(" "+ArchAPI.getServerName()+" v"+ArchAPI.getServerVersion()));
 		
 		topScreen = new ArchScreenComponent(new ArchScreen(ArchScreenType.TOP_SCREEN, new Dimension(400,240)));
 		bottomScreen = new ArchScreenComponent(new ArchScreen(ArchScreenType.BOTTOM_SCREEN, new Dimension(320,240)));
